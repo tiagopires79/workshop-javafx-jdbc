@@ -17,8 +17,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 public class MainViewController implements Initializable{
-	int count;
-	
+		
     @FXML
 	private MenuItem menuItemSeller;
     @FXML
@@ -42,29 +41,35 @@ public class MainViewController implements Initializable{
     }
 		
 	@Override
-	public void initialize(URL uri, ResourceBundle rb) {	
+	public void initialize(URL url, ResourceBundle rb) {	
 	}
 	
 	private synchronized void loadView(String absoluteName) {
 		try {
+			// Carregando nova view
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			//Lendo view passada via referencia de string como parametro
 			VBox newVBox = loader.load();
-			//Guardando referencia da cena principal
-			Scene mainScene = Main.getMainScene();
-			//Guardando informacoes do mainVBox
-			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
-			//Guardando informacoes dos filhos "Nodos" do mainMenu
+			
+			
+			//Guardando referência da cena principal
+			Scene mainScene = Main.getMainScene();			
+			//Guardando nodo Vbox da MainView
+			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();			
+			//Guardando Fihos "Nodos/Menus" da MainView 
 			Node mainMenu = mainVBox.getChildren().get(0);
+			
 			//Limpando todos os filhos do mainVBox
 			mainVBox.getChildren().clear();
+			
 			//Adicionando novamente filhos do mainVBox
-			mainVBox.getChildren().add(mainMenu);		
+			mainVBox.getChildren().add(mainMenu);			
 			//Adicionando filhos de newVbox
 			mainVBox.getChildren().addAll(newVBox.getChildren());			
 		}
 		catch(IOException e){
-			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+			//e.printStackTrace();
+			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);	
 		}
 	}
 }
