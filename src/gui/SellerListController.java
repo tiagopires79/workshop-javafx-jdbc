@@ -1,6 +1,7 @@
 package gui;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -32,22 +33,22 @@ public class SellerListController implements Initializable, DataChangeListener {
 
 	@FXML
 	private TableView<Seller> tableViewSeller;
-
-	@FXML
-	private TableColumn<Seller, Seller> tableColumnEDIT;
-
 	@FXML
 	private TableColumn<Seller, Integer> tableViewColumnID;
-
 	@FXML
-	private TableColumn<Seller, String> tableViewColumnName;
-
+	private TableColumn<Seller, String> tableViewColumnName;	
+	@FXML
+	private TableColumn<Seller, String> tableViewColumnEmail;
+	@FXML
+	private TableColumn<Seller, Date> tableViewColumnBirthDate;
+	@FXML
+	private TableColumn<Seller, Double> tableViewColumnBaseSalary;	
+	@FXML
+	private TableColumn<Seller, Seller> tableColumnEDIT;	
 	@FXML
 	private TableColumn<Seller, Seller> tableColumnREMOVE;
-
 	@FXML
 	private Button btNew;
-
 	@FXML
 	private ObservableList<Seller> obsList;
 
@@ -69,6 +70,11 @@ public class SellerListController implements Initializable, DataChangeListener {
 	private void initializeNodes() {
 		tableViewColumnID.setCellValueFactory(new PropertyValueFactory<Seller, Integer>("id"));
 		tableViewColumnName.setCellValueFactory(new PropertyValueFactory<Seller, String>("name"));
+		tableViewColumnEmail.setCellValueFactory(new PropertyValueFactory<Seller, String>("email"));
+		tableViewColumnBirthDate.setCellValueFactory(new PropertyValueFactory<Seller, Date>("birthDate"));
+		Utils.formatTableColumnDate(tableViewColumnBirthDate, "dd/MM/yyyy");
+		tableViewColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<Seller, Double>("baseSalary"));
+		Utils.formatTableColumnDouble(tableViewColumnBaseSalary, 2);
 
 		// Fazer altura do componente acompanhar a tela do windows
 		// Pega uma referencia do palco principal
