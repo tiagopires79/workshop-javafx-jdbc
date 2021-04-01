@@ -24,7 +24,7 @@ public class Alerts {
 		return alert.showAndWait();
 	}
 	
-	public static void InjectedCurretment(Object obj) {
+	public static void injectedCorrectly(Object obj) {
 		if(obj == null) {
 			throw new IllegalStateException("Object was null");
 		}

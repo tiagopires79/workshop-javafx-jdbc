@@ -116,6 +116,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
 			dialogStage.showAndWait();
 
 		} catch (IOException e) {
+			e.printStackTrace();
 			Alerts.showAlert("IO Exception", "Error Loading view", e.getMessage(), AlertType.ERROR);
 		}
 	}
@@ -166,7 +167,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
 		Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Are you sure to delete?");
 		
 		if(result.get() == ButtonType.OK) {
-			Alerts.InjectedCurretment(obj); // testa se objeto foi injetado corretamente e se não é nulo.
+			Alerts.injectedCorrectly(obj); // testa se objeto foi injetado corretamente e se não é nulo.
 			try {
 				depService.remove(obj);
 				updateTableView();
