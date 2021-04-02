@@ -147,13 +147,11 @@ public class SellerFormController implements Initializable {
 		
 		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
 			exception.addError("name", "  Field can't be empty");
-		}
-		dep.setName(txtName.getText());
+		} else dep.setName(txtName.getText());
 		
 		if (txtEmail.getText() == null || txtEmail.getText().trim().equals("")) {
 			exception.addError("email", "  Field can't be empty");
-		}
-		dep.setEmail(txtEmail.getText());
+		} else dep.setEmail(txtEmail.getText());
 		
 		// Convertendo "Instant" do form para "Date" do Objeto do "Model"
 		if(dpBirthDate.getValue() == null) {
@@ -161,15 +159,12 @@ public class SellerFormController implements Initializable {
 		}else {
 			Instant instant = Instant.from(dpBirthDate.getValue().atStartOfDay(ZoneId.systemDefault()));
 			dep.setBirthDate(Date.from(instant));
-		}
+		 }
 		if (txtBaseSalary.getText() == null || txtBaseSalary.getText().trim().equals("")) {
 			exception.addError("baseSalary", "  Field can't be empty");
-		}
-		dep.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText()));
+		} else dep.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText()));
 		
-		dep.setDepartment(comboBoxDepartment.getValue());
-		
-		
+		dep.setDepartment(comboBoxDepartment.getValue());		
 		
 		if (exception.getErrors().size() > 0) {
 			throw exception;
