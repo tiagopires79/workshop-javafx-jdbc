@@ -140,36 +140,36 @@ public class SellerFormController implements Initializable {
 	}
 
 	private Seller getFormData() {
-		Seller dep = new Seller();
+		Seller seller = new Seller();
 		ValidationException exception = new ValidationException("Validation error");
 		
-		dep.setId(Utils.tryParseToInt(txtId.getText()));
+		seller.setId(Utils.tryParseToInt(txtId.getText()));
 		
 		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
 			exception.addError("name", "  Field can't be empty");
-		} else dep.setName(txtName.getText());
+		} else seller.setName(txtName.getText());
 		
 		if (txtEmail.getText() == null || txtEmail.getText().trim().equals("")) {
 			exception.addError("email", "  Field can't be empty");
-		} else dep.setEmail(txtEmail.getText());
+		} else seller.setEmail(txtEmail.getText());
 		
 		// Convertendo "Instant" do form para "Date" do Objeto do "Model"
 		if(dpBirthDate.getValue() == null) {
 			exception.addError("birthDate", "  Field can't be empty");
 		}else {
 			Instant instant = Instant.from(dpBirthDate.getValue().atStartOfDay(ZoneId.systemDefault()));
-			dep.setBirthDate(Date.from(instant));
+			seller.setBirthDate(Date.from(instant));
 		 }
 		if (txtBaseSalary.getText() == null || txtBaseSalary.getText().trim().equals("")) {
 			exception.addError("baseSalary", "  Field can't be empty");
-		} else dep.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText()));
+		} else seller.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText()));
 		
-		dep.setDepartment(comboBoxDepartment.getValue());		
+		seller.setDepartment(comboBoxDepartment.getValue());		
 		
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
-		return dep;
+		return seller;
 	}
 
 	@FXML
